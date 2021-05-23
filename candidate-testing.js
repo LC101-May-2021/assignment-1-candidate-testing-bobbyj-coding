@@ -32,16 +32,39 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  /* former TODO 1.2b */
-  candidateAnswer = input.question(question);
-  /* console.log(candidateAnswer); */ 
+  candidateAnswer = input.question(question);   
+  /* console.log(candidateAnswer);  
+  for (i = 0; i < questions.length; i++) {
+    //trialAnswers =[];
+    //candidateAnswers[i] = [];
+    candidateAnswers = input.question(questions[i]);
+    candidateAnswers[i] = input.question('Enter Element ' + (i+1));
+    //console.log(candidateAnswers + candidateAnswers[i]);
+    //candidateAnswers.push(input.question(questions[i]));
+    //console.log(candidateAnswers);
+    //console.log(candidateAnswers[0]);
+    /*candidateAnswers.shift();
+    /*candidateAnswers[i].shift();
+    /*candidateAnswers.push(questions[i]);
+    
+    
+    /*trialAnswers = [];
+    candidateAnswers = input.question(questions[i]);
+    trialAnswers.concat(questions[i]);
+    console.log(trialAnswers);
+    
+    }
+    console.log(candidateAnswers);
+}
+
+console.log(candidateAnswers); */
 
 }
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer === correctAnswer) {
+  if (candidateAnswer == correctAnswer) {
     console.log("Congratulations. Sally Ride is correct!");
   } else {
     console.log("Your answer is incorrect.");
