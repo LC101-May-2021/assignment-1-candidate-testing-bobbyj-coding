@@ -13,7 +13,7 @@ let questions = [
   "True or false: 5 kilometer == 5000 meters? ",
   "(5 + 3)/2 * 10 = ? ",
   "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
-  "What is the minimum crew size for the ISS?"
+  "What is the minimum crew size for the ISS? "
 ];
 let correctAnswers = [
   "Sally Ride",
@@ -24,6 +24,14 @@ let correctAnswers = [
 ];
 let candidateAnswers = [];
 
+// Below converts items in correctAnswers array to lower case
+let correctAnswersLower = [];
+for (i = 0; i < correctAnswers.length; i++) {
+  correctAnswersLower[i] = correctAnswers[i].toLowerCase();
+}
+
+correctAnswers = correctAnswersLower; // now lower case
+
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
@@ -33,32 +41,7 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   candidateAnswer = input.question(question);   
-  /* console.log(candidateAnswer);  
-  for (i = 0; i < questions.length; i++) {
-    //trialAnswers =[];
-    //candidateAnswers[i] = [];
-    candidateAnswers = input.question(questions[i]);
-    candidateAnswers[i] = input.question('Enter Element ' + (i+1));
-    //console.log(candidateAnswers + candidateAnswers[i]);
-    //candidateAnswers.push(input.question(questions[i]));
-    //console.log(candidateAnswers);
-    //console.log(candidateAnswers[0]);
-    /*candidateAnswers.shift();
-    /*candidateAnswers[i].shift();
-    /*candidateAnswers.push(questions[i]);
-    
-    
-    /*trialAnswers = [];
-    candidateAnswers = input.question(questions[i]);
-    trialAnswers.concat(questions[i]);
-    console.log(trialAnswers);
-    
-    }
-    console.log(candidateAnswers);
-}
-
-console.log(candidateAnswers); */
-
+  
 }
 
 function gradeQuiz(candidateAnswers) {
@@ -70,10 +53,42 @@ function gradeQuiz(candidateAnswers) {
     console.log("Your answer is incorrect.");
   }
 
-  let grade;
-  
+// my code inserted here
 
-  return grade;
+// Takes user input responses and stores them into candidateAnswers array
+for (let i = 0; i < questions.length; i++) {
+  let variable = input.question(questions[i]);
+  let candidateInput = "";
+  candidateInput = variable.toLowerCase(); // Each reply is automatically converted to lower case
+  candidateAnswers.push(candidateInput);
+}
+
+let grade = 0;
+let percentage = 0;
+
+// User answers are compared to correct answers and grade is calculated
+for (let i = 0; i < correctAnswers.length; i++) {
+  if (candidateAnswers[i] == correctAnswers[i]) {
+    grade = grade + 1;
+  } else {
+    grade = grade;
+  }
+}
+
+percentage = grade / correctAnswers.length * 100;
+
+if (grade >= 4) {
+  console.log(`Overall Grade:  ${percentage}% (${ grade } of 5 responses correct)\nStatus:  PASSED`);
+} else {
+  console.log(`Overall Grade:  ${percentage}% (${ grade } of 5 responses correct)\nStatus:  FAILED`);
+}
+
+// my code ended... return to previous
+
+  //let grade;
+
+
+  //return grade;
 }
 
 function runProgram() {
@@ -81,7 +96,6 @@ function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
   console.log("Greetings " + candidateName + ".");
 
-  /* console.log(`For Question 1 [or ${questionNumber}], your answer was ${candidateAnswers}, while the correct answer was: ${correctAnswers} `) */
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
