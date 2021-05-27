@@ -36,12 +36,12 @@ function askQuestion() {
 
 function gradeQuiz(candidateAnswers) {   
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-if (candidateAnswer == correctAnswer) {
+/*if (candidateAnswer == correctAnswer) {
     console.log("Congratulations. Sally Ride is correct!\n");
   } else {
     console.log("Your answer is incorrect.\n");
   }
-
+*/
 // my code inserted here
 
 // Takes user input responses and stores them into candidateAnswers array
@@ -67,7 +67,7 @@ correctAnswers = correctAnswersLower; // now lower case
 
 // User answers are compared to correct answers and grade is calculated
 for (let i = 0; i < correctAnswers.length; i++) {
-  if (candidateAnswers[i] == correctAnswers[i]) {
+  if (candidateAnswers[i] === correctAnswers[i]) {
     grade = grade + 1;
   } else {
     grade = grade;
