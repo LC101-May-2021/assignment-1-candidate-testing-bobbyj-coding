@@ -3,11 +3,12 @@ const input = require('readline-sync');
 // TODO 2: modify your quiz app to ask 5 questions //
 
 // TODO 1.1a: Define candidateName // 
-candidateName = "";
+let candidateName = "";
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
 let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
+let candidateAnswers = [];
 let questions = [
   "Who was the first American woman in space? ",
   "True or false: 5 kilometer == 5000 meters? ",
@@ -22,35 +23,23 @@ let correctAnswers = [
   "Trajectory",
   "3"
 ];
-let candidateAnswers = [];
 
-// Below converts items in correctAnswers array to lower case
-let correctAnswersLower = [];
-for (i = 0; i < correctAnswers.length; i++) {
-  correctAnswersLower[i] = correctAnswers[i].toLowerCase();
-}
-
-correctAnswers = correctAnswersLower; // now lower case
-
-
-function askForName() {
+function askForName() {   
   // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question("Please enter your name. ");
 }
 
-function askQuestion() {
+function askQuestion() {  
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  candidateAnswer = input.question(question);   
-  
+  candidateAnswer = input.question(question);
 }
 
-function gradeQuiz(candidateAnswers) {
-
+function gradeQuiz(candidateAnswers) {   
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer == correctAnswer) {
-    console.log("Congratulations. Sally Ride is correct!");
+if (candidateAnswer == correctAnswer) {
+    console.log("Congratulations. Sally Ride is correct!\n");
   } else {
-    console.log("Your answer is incorrect.");
+    console.log("Your answer is incorrect.\n");
   }
 
 // my code inserted here
@@ -60,11 +49,21 @@ for (let i = 0; i < questions.length; i++) {
   let variable = input.question(questions[i]);
   let candidateInput = "";
   candidateInput = variable.toLowerCase(); // Each reply is automatically converted to lower case
+  //candidateAnswers.push(candidateInput);
+  console.log(`Your reply:  ${variable}\nCorrect reply:  ${correctAnswers[i]}\n`);
   candidateAnswers.push(candidateInput);
 }
 
 let grade = 0;
 let percentage = 0;
+
+// Below converts items in correctAnswers array to lower case
+let correctAnswersLower = [];
+for (i = 0; i < correctAnswers.length; i++) {
+  correctAnswersLower[i] = correctAnswers[i].toLowerCase();
+}
+
+correctAnswers = correctAnswersLower; // now lower case
 
 // User answers are compared to correct answers and grade is calculated
 for (let i = 0; i < correctAnswers.length; i++) {
@@ -89,7 +88,7 @@ if (grade >= 4) {
 
 
   //return grade;
-}
+}  
 
 function runProgram() {
   askForName();
