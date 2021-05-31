@@ -8,9 +8,22 @@ let candidateName = "";
 let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
-let questions;
-let correctAnswers;
-let candidateAnswers;
+// Define questions and correctAnswers variables as arrays. Use the table below to fill these arrays.
+let questions = [
+  "Who was the first American woman in space? ",
+  "True or false: 5 kilometer == 5000 meters? ",
+  "(5 + 3)/2 * 10 = ? ",
+  "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
+  "What is the minimum crew size for the ISS? "
+];
+let correctAnswers = [
+  "Sally Ride",
+  "true",
+  "40",
+  "Trajectory",
+  "3"
+];
+let candidateAnswers = [];
 
 
 function askForName() {
@@ -20,24 +33,44 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  candidateAnswer = input.question(question);
+  //candidateAnswer = input.question(question);
 
+  // Replace your code from TODO 1.2b with a loop that programmatically asks each question in the array and stores the user's responses.
+
+  // candidateAnswers = input.question(questions[i]);
+  for (let i = 0; i < questions.length; i++) {
+    let variable = input.question(questions[i]);
+    let candidateInput = "";
+    candidateInput = variable.toLowerCase(); // Each reply is automatically converted to lower case
+    candidateAnswers.push(candidateInput);
+
+  }
+  
 }
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer === correctAnswer) {
+  /* if (candidateAnswer === correctAnswer) {
     console.log("Congratulations. Sally Ride is correct!");
   } else {
     console.log("Your answer is incorrect.");
   }
+  */
 
+  // Replace the basic feedback from TODO 1.2c with a template literal that displays each of the candidate's responses in addition to the corresponding correct answers.
+  for (let i = 0; i < correctAnswers.length; i++) {
+      console.log(`${[i+1]}) ${questions[i]}`);
+    console.log(`Your answer:  ${candidateAnswers[i]}`);
+    console.log(`Correct answer:  ${correctAnswers[i]} \n`);
+  }
+}
+/*
   let grade;
 
 
   return grade;
-}
+} */
 
 function runProgram() {
   askForName();
