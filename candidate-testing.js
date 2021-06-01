@@ -42,6 +42,7 @@ function askQuestion() {
     let variable = input.question(questions[i]);
     let candidateInput = "";
     candidateInput = variable.toLowerCase(); // Each reply is automatically converted to lower case
+    // Checking for the correct answer should be case insensitive (e.g. "Orbit" is the same as "orbit")
     candidateAnswers.push(candidateInput);
 
   }
@@ -58,19 +59,49 @@ function gradeQuiz(candidateAnswers) {
   }
   */
 
-  // Replace the basic feedback from TODO 1.2c with a template literal that displays each of the candidate's responses in addition to the corresponding correct answers.
-  for (let i = 0; i < correctAnswers.length; i++) {
-      console.log(`${[i+1]}) ${questions[i]}`);
-    console.log(`Your answer:  ${candidateAnswers[i]}`);
-    console.log(`Correct answer:  ${correctAnswers[i]} \n`);
-  }
+let grade = 0;
+let percentage = 0;
+
+// Below converts items in correctAnswers array to lower case
+let correctAnswersLower = [];
+for (i = 0; i < correctAnswers.length; i++) {
+  correctAnswersLower[i] = correctAnswers[i].toLowerCase();
 }
-/*
-  let grade;
+
+correctAnswers = correctAnswersLower; // now lower case
+
+  // Compare the candidate answers with the correct answers
+  for (let i = 0; i < correctAnswers.length; i++) {
+    if (candidateAnswers[i] == correctAnswers[i]) {
+      grade = grade + 1;
+    } else {
+      grade = grade;
+    }
+  }
+
+/*  let grade;
 
 
   return grade;
-} */
+
+*/
+
+  percentage = grade / correctAnswers.length * 100;
+
+  // Replace the basic feedback from TODO 1.2c with a template literal that displays each of the candidate's responses in addition to the corresponding correct answers.
+  for (let i = 0; i < correctAnswers.length; i++) {
+    console.log(`${[i+1]}) ${questions[i]}`);
+    console.log(`Your answer:  ${candidateAnswers[i]}`);
+    console.log(`Correct answer:  ${correctAnswers[i]} \n`);
+  }
+
+  if (grade >= 4) {
+    console.log(`>>> Overall Grade:  ${percentage}% (${ grade } of 5 responses correct) <<<\n>>> Status:  PASSED <<<`);
+  } else {
+    console.log(`>>> Overall Grade:  ${percentage}% (${ grade } of 5 responses correct) <<<\n>>> Status:  FAILED <<<`);
+}
+
+} 
 
 function runProgram() {
   askForName();
